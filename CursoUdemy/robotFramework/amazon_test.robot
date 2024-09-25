@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation   Essa suíte testa o site da Amazon
-Resource        /home/ana.euzebio@dynamox.local/CursoUdemy/robotFramework/amazon_resources.robot
+Resource        /home/ana.euzebio@dynamox.local/CursoUdemy/robot_framework_udemy/CursoUdemy/robotFramework/amazon_resources.robot
 Test Setup      Abrir o navegador
 # Test Teardown   Fechar o navegador
 
@@ -45,3 +45,18 @@ Caso de Teste 04 - Remover Produto do Carrinho
     Verificar se o produto "Console Xbox Series S" foi adicionado com sucesso
     Remover o produto "Console Xbox Series S" do carrinho
     Verificar se o carrinho fica vazio
+
+Caso de Teste 05 - Fazer login com sucesso
+    [Documentation]    Verifica o controle de acesso
+    [Tags]             login
+    Acessar o menu de login
+    Preencher o email     ${USERNAME}
+    Preencher a senha     ${PASSWORD}                               
+    Logar
+
+Caso de Teste 06 - Fazer login sem sucesso
+    [Documentation]    Verifica o controle de acesso
+    [Tags]             login sem sucesso
+    Acessar o menu de login
+    Preencher o email    ${INVALID_USERNAME}
+    Exibe a mensagem de erro 

@@ -5,9 +5,14 @@ Library    SeleniumLibrary
 *** Variables ***
 
 ${Browser}             chrome
-${URL}                 http://www.amazon.com.br
+${URL}                 http://www.amazon.com.br/
 ${LOGO}                //a[@href="/ref=nav_logo"]
 ${MENU_ELETRONICOS}    //a[@href="/Eletronicos-e-Tecnologia/b/?ie=UTF8&node=16209062011&ref_=nav_cs_electronics"]
+${USERNAME}            testes.robot.framework@gmail.com  
+${PASSWORD}            testesautomatizadoscomrobot
+${INVALID_USERNAME}    teste.fake@123
+${INVALID_PASSWORD}    1234
+
 
 
 *** Keywords ***
@@ -29,7 +34,7 @@ Verificar se aparece a categoria "Computadores e Informática"
     # Verifica se a lista está presente
     ${lista}    Get WebElement    xpath=//ul[contains(@class, 'a-unordered-list') and contains(@class, 'a-nostyle') and contains(@class, 'a-vertical') and contains(@class, 'a-spacing-medium')]
     # Obtém o item específico da lista
-    ${item}    Get WebElement    xpath=//ul[contains(@class, 'a-unordered-list') and contains(@class, 'a-nostyle') and contains(@class, 'a-vertical') and contains(@class, 'a-spacing-medium')]/li[2]
+    ${item}     Get WebElement    xpath=//ul[contains(@class, 'a-unordered-list') and contains(@class, 'a-nostyle') and contains(@class, 'a-vertical') and contains(@class, 'a-spacing-medium')]/li[2]
     # Clica no item da lista
     Click Element    ${item}
 Digitar o nome do produto "${TEXTO_PESQUISA}" no campo de Pesquisa
@@ -68,3 +73,23 @@ Remover o produto "Console Xbox Series S" do carrinho
     Click Element    locator=//input[@value='Excluir']
 Verificar se o carrinho fica vazio
     Wait Until Element Is Visible    locator=//span[contains(.,'foi removido de Carrinho de compras.')]
+
+Acessar o menu de login
+   Go To    ${URL}
+   Click Element     locator=//span[contains(@id,'nav-link-accountList-nav-line-1')]
+
+Preencher o email
+    [Arguments]       ${username}   
+    Input Text        locator=//input[contains(@type,'email')]      text=${username}
+    Click Element     locator=//input[@class='a-button-input']
+
+Preencher a senha
+    [Arguments]       ${password}                                        
+    Input Password    locator=//input[contains(@id,'password')]     password=${password}
+
+Logar
+    Click Button    locator=//input[contains(@class,'a-button-input')]
+
+
+Exibe a mensagem de erro
+    Element Should Be Visible    locator=//div[@class='a-alert-content'][contains(.,'Insira um endereço de e-mail ou número de telefone válido')]
