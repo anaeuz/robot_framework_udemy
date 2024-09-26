@@ -1,19 +1,7 @@
 
 *** Settings ***
 Library    SeleniumLibrary
-
-*** Variables ***
-
-${Browser}             chrome
-${URL}                 http://www.amazon.com.br/
-${LOGO}                //a[@href="/ref=nav_logo"]
-${MENU_ELETRONICOS}    //a[@href="/Eletronicos-e-Tecnologia/b/?ie=UTF8&node=16209062011&ref_=nav_cs_electronics"]
-${USERNAME}            testes.robot.framework@gmail.com  
-${PASSWORD}            testesautomatizadoscomrobot
-${INVALID_USERNAME}    teste.fake@123
-${INVALID_PASSWORD}    1234
-
-
+Variables    ../../robot_framework_udemy/robotFramework/variables.py
 
 *** Keywords ***
 Abrir o navegador

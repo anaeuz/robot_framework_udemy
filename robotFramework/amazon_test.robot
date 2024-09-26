@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation   Essa suíte testa o site da Amazon
-Resource        /home/ana.euzebio@dynamox.local/CursoUdemy/robot_framework_udemy/robotFramework/amazon_resources.robot
+Resource        ../../robot_framework_udemy/robotFramework/amazon_resources.robot
 Test Setup      Abrir o navegador
 # Test Teardown   Fechar o navegador
 
